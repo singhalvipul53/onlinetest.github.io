@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+{{ quiz.title }}
+{% endblock %}
+
+{% block content %}
+<style>
+    .jumbotron{
+	  	margin-top: 4%;
+        opacity: 0.8;
+      }
+* {
+  box-sizing: border-box;
+}
+
+.bg-image {
+  /* The image used */
+  background-image: url("http://www.mkesoftware.com/Images/website_background.jpg");
+
+  /* Add the blur effect */
+  filter: blur(4px);
+<!--  -webkit-filter: blur(8px);-->
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Position text in the middle of the page/image */
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+}
+
+</style>
+<center>
+<div class="bg-image"></div>
+<div class="jumbotron">
+<!--  <h2>{{ quiz.title }}</h2>-->
+<h3>{% trans "Category" %}: {{ quiz.category }}</h3>
+{% if quiz.single_attempt %}
+  <h4>{% trans "You will only get one attempt at this quiz" %}.</h4>
+{% endif %}
+<p>{{ quiz.description }}</p>
+<p>
+  <a href="{% url 'quiz_question' quiz_name=quiz.url %}">
+      <h3><b>{% trans "Start quiz" %}</b></h3>
+  </a>
+</p>
+</div>
+</center>
+{% endblock %}

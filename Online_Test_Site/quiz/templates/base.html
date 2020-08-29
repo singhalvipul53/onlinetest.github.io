@@ -1,0 +1,93 @@
+{% load i18n %} {% load static %}
+<!--<html xmlns:fb="http://www.facebook.com/2008/fbml" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">-->
+{% load i18n %}
+
+<head>
+  <meta charset="utf-8">
+
+  <title>{% trans "Hive Online Test" %} | {% block title %}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{% endblock %}">
+<!--  <link rel="stylesheet" href="{% static '/Online_Test_Site/css/login.css' %}">-->
+
+  <!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" 
+  integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+  <style type="text/css">
+    body {
+      background: url("https://wallpapertag.com/wallpaper/full/9/c/0/813629-background-simple-tumblr-1920x1080-for-android-50.jpg ");
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+  }
+  .jumbotron{
+	  	margin-top: 1%;
+        opacity: 0.8;
+      }
+     #btn:hover{
+          background-color: #34465d;
+          color : #fff;
+        }
+      #btn{
+        transition: all 0.2s;
+      }
+	</style>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'index' %}">Hive Online Test</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav rm-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-tem" style="color:gray">
+          <a href="{% url 'quiz_index' %}" class="nav-link">Quizzes</a>
+        </li>
+        <li class="nav-tem" style="color:gray">
+            <a href="{% url 'quiz_progress' %}" class="nav-link">Result</a>
+          </li>
+        {% endif %}
+
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item ">
+          {% if user.is_authenticated %}
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          {% else %}
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- Before the quiz content -->
+
+  <div class="jumbotron container">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-warning alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true"><sup>&times;</sup></span>
+      </button>
+      {{message}}
+    </div>
+    {% endfor %} {% endif %} {% block content %} {% endblock %}
+
+  </div>
+
+  <!-- After the quiz content -->
+
+ <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+

@@ -1,0 +1,118 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<style>
+    body
+{
+	margin: 0;
+	padding: 0;
+	font-family: 'Sofia',cursive;
+}
+h1{
+    margin-top: 10%;
+	color: black;
+    padding: 0 0 10px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.loginbox
+{
+    margin-top: 5%;
+	width: 320px;
+    height: 430px;
+    background:#d2d4d2;
+    color: #fff;
+    top: 40%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 60px 0 0 0;
+}
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+.loginbox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+.loginbox .inputbox
+{
+	position: relative;
+}
+.loginbox .inputbox input
+{
+	width: 100%;
+	padding: 0;
+	font-size: 16px;
+	color: #818284;
+	margin-bottom: 50px;
+	border: none;
+	border-bottom: 1px solid black;
+	background: transparent;
+}
+.loginbox .inputbox label
+{
+	position: absolute;
+	top:0;
+	left: 0;
+	padding: 0;
+	font-size: 16px;
+	color: black;
+	pointer-events: none;
+	transition: .5s;
+}
+.loginbox .inputbox input:focus ~ label,
+.loginbox .inputbox input:valid ~ label
+{
+	top: 0px;
+	left: 0;
+	color:#fff;
+	font-size: 12px;
+}
+.loginbox input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 50px;
+    background:  #34465d;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 40px;
+}
+.loginbox a{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 30px;
+    color: #fff;
+}
+
+</style>
+ <div class="loginbox">
+     <img src="https://www.w3schools.com/w3images/avatar2.png" class="avatar">
+        <div class="col-md-6 offset-md-3">
+            <h1>Login</h1>
+            <form method="POST">
+                {% csrf_token %}
+                 <div class="inputbox">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter Registeration Id" name="username">
+                    </div>
+                 </div>
+                <div class="inputbox">
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder=" Enter Password" name="password">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-primary">Login</button>
+            </form>
+        </div>
+  </div>
+ <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+{% endblock %}
